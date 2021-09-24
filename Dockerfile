@@ -1,7 +1,6 @@
 # Build Image
 
 FROM ubuntu:18.04 as mapcrafter-builder
-MAINTAINER Dinip <me@dinip.pt>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -10,7 +9,7 @@ RUN apt-get update && apt-get install -y libpng-dev libjpeg-turbo8 libboost-iost
 
 # Add the git repo and build it
 RUN mkdir /git && cd /git && \
-    git clone --single-branch --branch world117 -n https://github.com/Dinip/mapcrafter.git && \
+    git clone --single-branch --branch world117 -n https://github.com/blowl/mapcrafter && \
     cd mapcrafter/ && git checkout \
     && mkdir build && cd build && \
     cmake .. && \
@@ -21,7 +20,6 @@ RUN mkdir /git && cd /git && \
 # Final Image
 
 FROM ubuntu:18.04
-MAINTAINER Dinip <me@dinip.pt>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
